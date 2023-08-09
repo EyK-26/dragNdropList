@@ -126,15 +126,13 @@ class Check extends Events {
 
   checkList() {
     this.draggableListItems.forEach((el, idx) => {
-      if (el.querySelector('p').textContent === richestPeople[idx]) {
+      if (el.querySelector('p').textContent !== richestPeople[idx]) {
+        el.classList.add('wrong');
+      } else {
         el.classList.remove('wrong');
         el.classList.add('right');
-        clearTimeout(this.timeout);
-      } else {
-        el.classList.remove('right');
-        el.classList.add('wrong');
-        clearTimeout(this.timeout);
       }
+      clearTimeout(this.timeout);
     });
     this.removeClasses();
   }
